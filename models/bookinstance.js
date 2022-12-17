@@ -12,7 +12,7 @@ const BookInstanceSchema = new Schema({
         default: 'Mainenace',
     },
     dueBack: { type: Date, default: Date.now() },
-
+}, {
     virtuals: {
         url: {
             get() {
