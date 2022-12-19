@@ -10,7 +10,7 @@ const catalogueRouter = require('./routes/catalogue');
 
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb+srv://alberto:worlD54AtlAs7@cluster0.lfskhzz.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, { dbName: 'local_library', useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
