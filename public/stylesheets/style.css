@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+ul {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
