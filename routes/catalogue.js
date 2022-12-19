@@ -1,15 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const asyn = require('async');
 
 const bookController = require('../controllers/bookController');
 const bookinstanceController = require('../controllers/bookinstanceController');
 const authorController = require('../controllers/authorController');
 const genreController = require('../controllers/genreController');
 
-// bookController.index should go here instead :*
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Catalogue' });
-});
+const Book = require('../models/book');
+const BookInstance = require('../models/bookinstance');
+const Author = require('../models/author');
+const Genre = require('../models/genre');
+
+//router.get('/', function(req, res, next) {
+//    res.render('index', { title: 'Catalogue' });
+//});
+router.get('/', bookController.index);
 
 router.get('/book/create', bookController.book_create_get);
 router.post('/book/create', bookController.book_create_post);
