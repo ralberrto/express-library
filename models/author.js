@@ -17,13 +17,13 @@ const AuthorSchema = new Schema({
                 }
                 return fullname;
             },
+        },
         url: {
             get() {
                 return `/catalog/author/${this._id}`;
             }
         }
-        }
-    },
+    }
 });
 
 // Alternative way to define virtual properties
