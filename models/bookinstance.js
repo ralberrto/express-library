@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { DateTime } = require('luxon');
 
 const Schema = mongoose.Schema;
 
@@ -18,7 +19,12 @@ const BookInstanceSchema = new Schema({
             get() {
                 return `/catalog/bookinstance/${this._id}`;
             }
-        }
+        },
+        dueDateFormatted: {
+            get() {
+                return DateTime.fromJSDate(this.dueBack).toLocaleString(DateTime.DATE_MED);
+            }
+        },
     }
 });
 
