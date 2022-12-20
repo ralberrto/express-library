@@ -1,7 +1,12 @@
 const Author = require('../models/author');
 
 exports.author_list = (req, res) => {
-    res.send('NOT IMPLEMENTED: Author list');
+    Author.find()
+        .sort({ 'family_name': 1 })
+        .exec((err, author_list) => {
+            if (err) return next(err);
+            res.render('author_list', { title: 'Author List', author_list: author_list });
+        });
 };
 
 exports.author_detail = (req, res) => {
