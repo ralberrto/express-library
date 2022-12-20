@@ -1,7 +1,13 @@
 const BookInstance = require('../models/bookinstance');
 
 exports.bookinstance_list = (req, res) => {
-    res.send('NOT IMPLEMENTED: BookInstance list');
+    BookInstance.find({}, { book: true, status: true, imprint: true, dueBack: true })
+        .populate('book')
+        .sort({ 'book.title': 1 })
+        .exec((err, list_bookinstance, next) => {
+            if (err) return next(err);
+            res.render('bookinstance_list', { title: 'Copies List', bookinstance_list: list_bookinstance });
+        });
 };
 
 exports.bookinstance_detail = (req, res) => {

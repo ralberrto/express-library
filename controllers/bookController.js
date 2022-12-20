@@ -39,7 +39,7 @@ exports.book_list = (req, res) => {
     Book.find({}, { title: true, author: true })
         .sort({ title: 1 })
         .populate('author')
-        .exec((err, list_books) => {
+        .exec((err, list_books, next) => {
             if (err) return next(err);
             res.render('book_list', { title: 'Book List', book_list: list_books });
         });
