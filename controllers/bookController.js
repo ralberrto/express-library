@@ -35,7 +35,7 @@ exports.index = (req, res) => {
     );
 };
 
-exports.book_list = (req, res) => {
+exports.book_list = (req, res, next) => {
     Book.find({}, { title: true, author: true })
         .sort({ title: 1 })
         .populate('author')
@@ -45,8 +45,30 @@ exports.book_list = (req, res) => {
         });
 };
 
-exports.book_detail = (req, res) => {
-    res.send(`NOT IMPLEMENTED: Book detail: ${req.params.id}`);
+exports.book_detail = (req, res, next) => {
+    async.parallel({
+        getBook(callback) {
+            Book.findById(req.params.id)
+                .populate('author')
+                .populate('genre')
+                .exec(callback);
+        },
+        getBookinstances(callback) {
+            BookInstance.find({ book: req.params.id }).exec(callback);
+        }
+    }, (err, results) => {
+        if (err) return next(err);
+        if (!results.getBook) {
+            const err = new Error('Book not found');
+            err.status = 404;
+            return next(err);
+        }
+        res.render('book_detail', {
+            title: results.getBook.title,
+            book: results.getBook,
+            bookinstances: results.getBookinstances,
+        });
+    });
 };
 
 exports.book_create_get = (req, res) => {
