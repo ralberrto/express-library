@@ -31,7 +31,7 @@ const AuthorSchema = new Schema({
         },
         date_of_death_formatted: {
             get() {
-                return this.date_of_birth ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED) : '';
+                return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED) : '';
             }
         }
     }
