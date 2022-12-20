@@ -17,7 +17,7 @@ const BookInstanceSchema = new Schema({
     virtuals: {
         url: {
             get() {
-                return `/catalog/bookinstance/${this._id}`;
+                return `/catalogue/bookinstance/${this._id}`;
             }
         },
         dueDateFormatted: {

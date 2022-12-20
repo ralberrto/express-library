@@ -21,7 +21,7 @@ const AuthorSchema = new Schema({
         },
         url: {
             get() {
-                return `/catalog/author/${this._id}`;
+                return `/catalogue/author/${this._id}`;
             }
         },
         date_of_birth_formatted: {
