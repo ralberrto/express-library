@@ -10,8 +10,21 @@ exports.bookinstance_list = (req, res) => {
         });
 };
 
-exports.bookinstance_detail = (req, res) => {
-    res.send(`NOT IMPLEMENTED: BookInstance detail: ${req.params.id}`);
+exports.bookinstance_detail = (req, res, next) => {
+    BookInstance.findById(req.params.id)
+        .populate('book')
+        .exec((err, bookinstance) => {
+            if (err) return next(err);
+            if (!bookinstance) {
+                const err = new Error('Book copy not found');
+                err.status = 404;
+                return next(err);
+            }
+            res.render('bookinstance_detail', {
+                title: `Copy: ${bookinstance.book.title}`,
+                bookinstance,
+            });
+        });
 };
 
 exports.bookinstance_create_get = (req, res) => {
