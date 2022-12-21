@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const asyn = require('async');
+const async = require('async');
 
 const bookController = require('../controllers/bookController');
 const bookinstanceController = require('../controllers/bookinstanceController');
