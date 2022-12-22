@@ -18,3 +18,7 @@ block content
 
   if bookinstance.status != 'Available'
     p #[strong Due back: ] #{bookinstance.dueDateFormatted}
+  
+  hr
+  p 
+    a.text-danger(href=bookinstance.url + '/delete') Delete copy
