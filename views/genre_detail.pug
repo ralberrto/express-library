@@ -11,3 +11,6 @@ block content
         dd #{book.summary}
       else 
         p No books for this genre.
+  hr
+  p 
+    a.text-danger(href=genre.url + '/delete') Delete genre
