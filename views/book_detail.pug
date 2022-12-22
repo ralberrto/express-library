@@ -28,3 +28,6 @@ block content
         a(href=instance.url) #{instance.id}
     else 
       p There are currently no copies of this book in the library. 
+  hr
+  p 
+    a.text-danger(href=book.url + '/delete') Delete book
